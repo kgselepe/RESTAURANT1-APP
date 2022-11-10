@@ -3,7 +3,7 @@ import { Text, View, StyleSheet,TouchableOpacity ,TextInput,Image,ScrollView} fr
 
 function Menu ({ route, navigation}) {
    const nextpage = (()=>{
-     navigation.navigate('Payment')
+     navigation.navigate('Form',{title:route.params.title})
   })
  
 
@@ -68,7 +68,7 @@ return(
 
 <Image style={styles.icon13} source={require('../assets/IMAGES/Favorite.png')}/>
  
-  <Text style={styles.add} > ADD TO CART</Text>
+  <Text style={styles.add}  > ADD TO CART</Text>
 </TouchableOpacity>
 
 </View>

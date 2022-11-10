@@ -1,6 +1,8 @@
 import {useState,React} from 'react';
 import { Text, View,StyleSheet, TextInput, TouchableOpacity, Image, ScrollView} from 'react-native';
 import Constants from 'expo-constants';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {auth} from "../assets/Firebase";
 
 import { Card } from 'react-native-paper';
 
@@ -16,7 +18,20 @@ const nextpage = (()=>{
 const nextpage1 = (()=>{
      navigation.navigate('SignIn')
   })
+  const Register = ()=>{
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
 
+  }
   return (
     <ScrollView>
     <View style={styles.container} >
@@ -39,7 +54,7 @@ const nextpage1 = (()=>{
 <TextInput placeholder="Enter Password"style = {styles.input} onChangeText={(password =>setPassword(password))} />
   
 <Text  style={styles.text}   > Confirm Password:</Text>
-<TextInput placeholder="Confirm Password"style = {styles.input} />
+<TextInput placeholder="Confirm Password"style = {styles.input} onChangeText={(password =>setConfirmPassword(password))}/>
 
 <TouchableOpacity style={styles.signin} onPress={nextpage1} >
 
@@ -48,7 +63,7 @@ const nextpage1 = (()=>{
 </TouchableOpacity>
 
 <TouchableOpacity style={styles.signup}
- onPress={nextpage}
+ onPress={Register}
 >
 <Text  style={styles.signupText}> SIGN UP </Text>
 
@@ -56,10 +71,6 @@ const nextpage1 = (()=>{
 
 
 
-<Image style={styles.icon1} source={require('../assets/IMAGES/icon1.jpg')} />
-<Image style={styles.icon2} source={require('../assets/IMAGES/icon5.jpg')} />
-<Image style={styles.icon3} source={require('../assets/IMAGES/icon3.png')} />
-  
   
   
   </Card>
@@ -167,27 +178,6 @@ backgroundColor:'#FF4301D8',
     marginTop:10,
     color:'#fff',
     fontWeight:'500',
-  },
-  icon1:{
-    width:26,
-    height:25,
-    borderRadius:100,
-    marginTop:20,
-    marginLeft:90,
-  },
-  icon2:{
-    width:26,
-    height:25,
-    borderRadius:100,
-    marginTop:-25,
-    marginLeft:140,
-  },
-  icon3:{
-    width:26,
-    height:25,
-    borderRadius:100,
-    marginTop:-25,
-    marginLeft:190,
   },
 
 

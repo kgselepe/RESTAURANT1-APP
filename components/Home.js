@@ -11,7 +11,6 @@ function Home({ navigation }) {
 
     },
 
-
     {
       title: 'BEEF TRIPE',
       salad:" two salads" ,
